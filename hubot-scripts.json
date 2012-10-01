@@ -1,1 +1,15 @@
-["redis-brain.coffee", "tweet.coffee", "shipit.coffee"]
+[
+  "redis-brain.coffee",
+  "tweet.coffee",
+  "shipit.coffee",
+  "applause.coffee",
+  "ascii.coffee",
+  "bang-bang.coffee",
+  "dribbble.coffee",
+  "megusta.coffee",
+  "reddit-random-top.coffee",
+  "shorten.coffee",
+  "xkcd.coffee",
+  "yoda-quotes.coffee"
+
+]
