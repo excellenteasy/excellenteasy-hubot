@@ -23,7 +23,7 @@
 
 Push = require 'pushover-notifications'
 
-users
+users =
   stephan: new Push
     user: process.env['PUSHOVER_STEPHAN']
     token: process.env['PUSHOVER_TOKEN']
@@ -39,9 +39,6 @@ pushMsg = (msg, user) ->
 
 module.exports = (robot) ->
   robot.hear /.*/, (msg) ->
-    if msg.message.user.id isnt '169564'
-      pushMsg msg, 'stephan'
-    if msg.message.user.id isnt '169566'
-      pushMsg msg, 'david'
-
-
+    id = msg?.message?.user?.id
+    if id isnt '169564' then pushMsg msg, 'stephan'
+    if id isnt '169566' then pushMsg msg, 'david'
