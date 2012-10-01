@@ -18,6 +18,7 @@
     "hubot": "2.3.2",
     "hubot-scripts": ">= 2.1.0",
     "hubot-hipchat": ">= 1.0.9",
+    "node-stringprep": "latest",
     "optparse": "1.0.3"
   },
 
