@@ -1,1 +1,1 @@
-app: bin/hubot -a hipchat -n Hu
+app: bin/hubot -a hipchat -n Hubot
