@@ -19,12 +19,13 @@
     "hubot-scripts": ">= 2.1.0",
     "hubot-hipchat": ">= 1.0.9",
     "optparse": "1.0.3",
-    "pushover-notifications": "0.1.2"
+    "pushover-notifications": "0.1.2",
+    "cheerio": "latest"
   },
 
   "engines": {
-    "node": "0.6.x",
-    "npm": "1.0.x"
+    "node": ">=0.8.2",
+    "npm": ">=1.0.x"
   }
 }
 

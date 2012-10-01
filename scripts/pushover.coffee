@@ -21,7 +21,8 @@
 # Author:
 #   boennemann
 
-Push = require 'pushover-notifications'
+Push    = require 'pushover-notifications'
+cheerio = require 'cheerio'
 
 users =
   stephan: new Push
@@ -39,6 +40,20 @@ pushMsg = (msg, user) ->
 
 module.exports = (robot) ->
   robot.hear /.*/, (msg) ->
+    text = msg?.message?.text
+
+    # don't listen on hubot calls
+    return if /^hubot/.test(text)
+    
+    # massage message if contains html
+    if msg.message.user.name is 'GitHub' or msg.message.user.name is 'Circle'
+      $ = cheerio.load "<body><span>#{text}</span></body>"
+      msg.message.text = $('span').text()
+
+
+    # look at user ids to not push a user his/her own message
     id = msg?.message?.user?.id
-    if id isnt '169564' then pushMsg msg, 'stephan'
-    if id isnt '169566' then pushMsg msg, 'david'
+    if id isnt '169564' and not /^boennemann/.test(msg.message.text)
+      pushMsg msg, 'stephan'
+    if id isnt '169566' and not /^davidpfahler/.test(msg.message.text)
+      pushMsg msg, 'david'
