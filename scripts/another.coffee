@@ -14,5 +14,5 @@
 #   boennemann
 
 module.exports = (robot) ->
-  robot.hear /^another$/i, (msg) ->
+  robot.hear /^another!*1*$/i, (msg) ->
     msg.send "http://25.media.tumblr.com/tumblr_maor1rdrhm1rtstddo1_500.gif"
