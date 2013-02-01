@@ -16,4 +16,4 @@ module.exports = (robot) ->
     It's #{florida.toLocaleTimeString()} in Palm Beach.
     It's #{munich.toLocaleTimeString()} in Munich.
     """
-    msg.reply reply
+    msg.send reply
