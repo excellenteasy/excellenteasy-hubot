@@ -79,7 +79,7 @@ module.exports = (robot) ->
       options.sound = 'magic'
 
     # look at user ids to not push a user his/her own message
-    unless id is '169564' and /^boennemann/.test(text)
+    unless id is '169564'
       pushMsg 'stephan', options
-    unless id is '169566' and /^davidpfahler/.test(text)
+    unless id is '169566'
       pushMsg 'david', options
