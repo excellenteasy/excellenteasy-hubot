@@ -68,7 +68,7 @@ module.exports = (robot) ->
 
       # strip away redundant information
       # regex: $status in build #$number of $user/$repo ($branch)
-      options.message = text.replace(
+      options.message = options.message.replace(
         /(Failed|Success|Fixed)\sin\sbuild\s#[0-9]+\sof\s[A-Za-z0-9\_\-]+\/[A-Za-z0-9\_\-]+\s\([A-Za-z0-9\_\-]+\)\s*/,
         '')
 
