@@ -55,9 +55,9 @@ module.exports = (robot) ->
       title = "#{msg.message.user.room} #{text.match(/#[0-9]*/)[0]}"
       switch text.match(/Failed|Fixed|Success/)[0]
         when 'Fixed', 'Success'
-          title = "\ue21a #{title}"
+          title = "\u2705 #{title}"
         when 'Failed'
-          title = "\ue219 #{title}"
+          title = "\u1F534 #{title}"
 
     # look at user ids to not push a user his/her own message
     id = msg?.message?.user?.id
