@@ -49,7 +49,7 @@ module.exports = (robot) ->
     options =
       message: text
       sound: 'pushover'
-      title: "#{username} about #{room}"
+      title: "\u2709 #{username} on #{room}"
 
     # strip away html
     if username is 'GitHub' or username is 'Circle'
@@ -65,12 +65,18 @@ module.exports = (robot) ->
         when 'Failed'
           options.title = "\u26D4 #{tmpTitle}"
           options.sound = 'siren'
-
+        else
+          return
       # strip away redundant information
       # regex: $status in build #$number of $user/$repo ($branch)
       options.message = options.message.replace(
         /(Failed|Success|Fixed)\sin\sbuild\s#[0-9]+\sof\s[A-Za-z0-9\_\-]+\/[A-Za-z0-9\_\-]+\s\([A-Za-z0-9\_\-]+\)\s*/,
         '')
+    else if username is 'GitHub'
+      # whitelisting GitHub messages b/c they are overwhelmingly numerous
+      unless /(commented|pushed|openend)/.test options.message then return
+      options.title = '\u270F'
+      options.sound = 'magic'
 
     # look at user ids to not push a user his/her own message
     unless id is '169564' and /^boennemann/.test(text)
