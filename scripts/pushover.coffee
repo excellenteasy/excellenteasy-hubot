@@ -32,36 +32,52 @@ users =
     user: process.env['PUSHOVER_DAVID']
     token: process.env['PUSHOVER_TOKEN']
 
-pushMsg = (msg, user, title) ->
-  users[user].send
-    message: msg.message.text
-    title: title or "#{msg.message.user.name}@#{msg.message.user.room}"
-  , (err, result) ->
+pushMsg = (user, options) ->
+  users[user].send options, (err, result) ->
+
+# "#{msg.message.user.name}@#{msg.message.user.room}"
 
 module.exports = (robot) ->
   robot.hear /.*/, (msg) ->
-    text = msg?.message?.text
-
+    id       = msg.message.user.id
+    room     = msg.message.user.room
+    text     = msg.message.text
+    username = msg.message.user.name
     # don't listen on hubot calls
     return if /^hubot/.test(text)
+    # pusherover payload
+    options =
+      message: text
+      sound: 'pushover'
+      title: "#{username} about #{room}"
 
-    # massage message if contains html
-    if msg.message.user.name is 'GitHub' or msg.message.user.name is 'Circle'
+    # strip away html
+    if username is 'GitHub' or username is 'Circle'
       $ = cheerio.load "<body><span>#{text}</span></body>"
-      msg.message.text = $('span').text()
+      options.message  = $('span').text()
 
-    title = null
-    if msg.message.user.name is 'Circle'
-      title = "#{msg.message.user.room} #{text.match(/#[0-9]*/)[0]}"
+    if username is 'Circle'
+      tmpTitle = "#{room} #{text.match(/#[0-9]+/)[0]}"
       switch text.match(/Failed|Fixed|Success/)[0]
         when 'Fixed', 'Success'
-          title = "\u2705 #{title}"
+          options.title = "\u2705 #{tmpTitle}"
+          options.sound = 'bugle'
         when 'Failed'
-          title = "\u26D4 #{title}"
+          options.title = "\u26D4 #{tmpTitle}"
+          options.sound = 'siren'
+
+      # strip away redundant information
+      options.message = text.replace(
+        ///
+          (Failed|Success|Fixed) # $status
+          \sin\sbuild\s\#[0-9]+\s # in build #$number
+          of\s[A-Za-z0-9\_\-]+\/[A-Za-z0-9\_\-]+\s # of $user/$repo
+          \([A-Za-z0-9\_\-]+\)\s*/ # ($branch)
+        ///,
+        '')
 
     # look at user ids to not push a user his/her own message
-    id = msg?.message?.user?.id
-    if id isnt '169564' and not /^boennemann/.test(text)
-      pushMsg msg, 'stephan', title
-    if id isnt '169566' and not /^davidpfahler/.test(text)
-      pushMsg msg, 'david', title
+    unless id is '169564' and /^boennemann/.test(text)
+      pushMsg 'stephan', options
+    unless id is '169566' and /^davidpfahler/.test(text)
+      pushMsg 'david', options
