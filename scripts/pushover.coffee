@@ -74,7 +74,7 @@ module.exports = (robot) ->
         '')
     else if username is 'GitHub'
       # whitelisting GitHub messages b/c they are overwhelmingly numerous
-      unless /(commented|pushed|openend)/.test options.message then return
+      unless /(commented|pushed|opened)/.test options.message then return
       options.title = '\u270F'
       options.sound = 'magic'
 
