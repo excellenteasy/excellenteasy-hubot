@@ -39,7 +39,6 @@ pushMsg = (user, options) ->
 
 module.exports = (robot) ->
   robot.hear /.*/, (msg) ->
-    id       = msg.message.user.id
     room     = msg.message.user.room
     text     = msg.message.text
     username = msg.message.user.name
@@ -78,8 +77,8 @@ module.exports = (robot) ->
       options.title = '\u270F'
       options.sound = 'magic'
 
-    # look at user ids to not push a user his/her own message
-    unless id is '169564'
+    # look at users to not push own message
+    unless username is 'Stephan Bönnemann'
       pushMsg 'stephan', options
-    unless id is '169566'
+    unless username is 'David Pfahler'
       pushMsg 'david', options
