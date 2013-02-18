@@ -57,7 +57,7 @@ module.exports = (robot) ->
         when 'Fixed', 'Success'
           title = "\u2705 #{title}"
         when 'Failed'
-          title = "\u1F534 #{title}"
+          title = "\uD83D\uDD34 #{title}"
 
     # look at user ids to not push a user his/her own message
     id = msg?.message?.user?.id
