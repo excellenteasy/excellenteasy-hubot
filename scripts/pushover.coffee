@@ -67,13 +67,9 @@ module.exports = (robot) ->
           options.sound = 'siren'
 
       # strip away redundant information
+      # regex: $status in build #$number of $user/$repo ($branch)
       options.message = text.replace(
-        ///
-          (Failed|Success|Fixed) # $status
-          \sin\sbuild\s\#[0-9]+\s # in build #$number
-          of\s[A-Za-z0-9\_\-]+\/[A-Za-z0-9\_\-]+\s # of $user/$repo
-          \([A-Za-z0-9\_\-]+\)\s*/ # ($branch)
-        ///,
+        /(Failed|Success|Fixed)\sin\sbuild\s#[0-9]+\sof\s[A-Za-z0-9\_\-]+\/[A-Za-z0-9\_\-]+\s\([A-Za-z0-9\_\-]+\)\s*/,
         '')
 
     # look at user ids to not push a user his/her own message
