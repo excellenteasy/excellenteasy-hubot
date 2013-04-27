@@ -1,7 +1,6 @@
 [
   "redis-brain.coffee",
   "tweet.coffee",
-  "shipit.coffee",
   "applause.coffee",
   "ascii.coffee",
   "bang-bang.coffee",
@@ -11,5 +10,4 @@
   "shorten.coffee",
   "xkcd.coffee",
   "yoda-quotes.coffee"
-
 ]
