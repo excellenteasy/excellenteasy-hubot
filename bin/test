@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export HUBOT_HIPCHAT_JID="27452_169888@chat.hipchat.com"
+export HUBOT_HIPCHAT_NAME="Hubot Botson"
+export HUBOT_HIPCHAT_PASSWORD="bergamots818rainbow"
+export PUSHOVER_TOKEN="De0jiPt86iZTnFTxd9QkaX3lRjY8m7"
+export PUSHOVER_STEPHAN="SbLV4JnTEoQyQ7Ub3AVEata65bNXzM"
+export PUSHOVER_DAVID="iCpgxttNN7VkZSTryYVuhOCqwDZbXE"
+export REDISTOGO_URL="redis://redistogo:71fe59129f4ec6a40eccaeb5f0d587f7@cod.redistogo.com:10257/"
+
+cd ..
+bin/hubot -a hipchat -n Hubot
