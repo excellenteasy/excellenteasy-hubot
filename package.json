@@ -22,7 +22,15 @@
   "dependencies": {
     "hubot": ">= 2.6.0 < 3.0.0",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
-    "hubot-slack": "~1.5.3"
+    "hubot-slack": "~1.5.3",
+    "cheerio": "~0.13.1",
+    "date-utils": "~1.2.15",
+    "githubot": "~0.5.0",
+    "underscore": "~1.6.0",
+    "underscore.string": "~2.3.3",
+    "nodepie": "~0.6.3",
+    "htmlparser": "~1.7.7",
+    "soupselect": "~0.2.0"
   },
   "engines": {
     "node": ">= 0.8.x",
